@@ -13,7 +13,7 @@ bower install
 
 # Database
 
-MYSQL was used for development, but in theory the [ORM](http://docs.sequelizejs.com/en/latest/) is agnostic, so you can use whatever you prefer. You will need to set up a configuration file at `config/database.js`.
+MYSQL was used for development, but in theory the [ORM](http://docs.sequelizejs.com/en/latest/) is agnostic, so you can use whatever you prefer. You will need to set up a configuration file at `config/database.js`. This file will not be commited to the repository.
 
 ```
 module.exports = {

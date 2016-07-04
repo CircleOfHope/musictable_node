@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block pageContent %}
+
+<h2>{{ song.title }}</h2>
+
+<div class="row">
+	<div class="col-md-8">
+		<table class="table table-condensed table-borderless">
+			<tr>
+				<th scope="row">Title</th>
+				<td>{{ song.title }}</td>
+			</tr>
+			<tr>
+				<th scope="row">Author</th>
+				<td>{{ song.author }}</td>
+			</tr>
+			<tr>
+				<th scope="row">Scripture</th>
+				<td>{{ song.scripture }}</td>
+			</tr>
+			<tr>
+				<th scope="row">First Line</th>
+				<td>{{ song.first_line }}</td>
+			</tr>
+			<tr>
+				<th scope="row">Lyrics Excerpt</th>
+				<td>{{ song.key_lyric }}</td>
+			</tr>
+			<tr>
+				<th scope="row">Notes</th>
+				<td>{{ song.notes }}</td>
+			</tr>
+		</table>
+
+		<h3>Attachments</h3>
+		{% if song.Attachments | length > 0 %}
+			<table class="table table-condensed table-borderless">
+				<tr>
+					<th>Name</th>
+					<th>Location</th>
+					<th>&nbsp;</th>
+				</tr>
+			{% for attachment in song.Attachments %}
+				<tr>
+					<td>{{ attachment.name }}</td>
+					<td>{{ attachment.location | displayLink }}</td>
+					<td><a href="{{ attachment.location }}" target="_blank">View</a></td>
+				</tr>
+			{% endfor %}
+			</table>
+		{% endif %}
+	</div>
+
+	<div class="col-md-4">
+		{% for grouper, typeGroup in song.Tags | groupby('TagTypeId') %}
+			<h4>{{ typeGroup[0].TagType.name }}</h4>
+			{% for tag in typeGroup %}
+				<span class="label label-primary">{{ tag.name }}</span>
+			{% endfor %}
+		{% endfor %}
+	</div>
+
+</div>
+
+{% endblock %}
